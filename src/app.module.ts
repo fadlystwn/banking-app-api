@@ -10,10 +10,13 @@ import { JwtService } from '@nestjs/jwt';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { TransactionService } from './transaction/transaction.service';
+import { TransactionController } from './transaction/transaction.controller';
+import { TransactionModule } from './transaction/transaction.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UserModule],
-  controllers: [AppController, UserController, AuthController],
-  providers: [AppService, PrismaService, UserService, AuthService, JwtService],
+  imports: [ConfigModule.forRoot(), AuthModule, UserModule, TransactionModule],
+  controllers: [AppController, UserController, AuthController, TransactionController],
+  providers: [AppService, PrismaService, UserService, AuthService, JwtService, TransactionService],
 })
 export class AppModule { }
