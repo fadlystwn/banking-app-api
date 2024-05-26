@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Query, ParseIntPipe, Body, Logger } from '@nestjs/common';
+import { Controller, Get, Post, Query, ParseIntPipe, Body, Logger, UseGuards } from '@nestjs/common';
 import { TransactionService } from './transaction.service';
 import { TransactionDto } from './dto/create-transaction.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('transaction')
 export class TransactionController {
@@ -8,7 +9,9 @@ export class TransactionController {
     private readonly transactionService: TransactionService,
   ) { }
 
-  @Get('/transactions')
+
+  @Get()
+  @UseGuards(JwtAuthGuard)
   async getAllTransactions() {
     try {
       const transactions = await this.transactionService.getTransactions();
