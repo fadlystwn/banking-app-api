@@ -25,7 +25,17 @@ model User {
   password               String
   createdAt              DateTime      @default(now())
   updatedAt              DateTime      @updatedAt
-  transactions           Transaction[] @relation("UserTransactions")
+  transactions           Transaction[] // Each user can have multiple transactions
+}
+
+model Account {
+  id            Int                 @id @default(autoincrement())
+  accountNumber String
+  bank          String
+  accountName   String
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+  transactions  TransactionDetail[]
 }
 
 model Transaction {
@@ -36,14 +46,14 @@ model Transaction {
   fromAccountNumber   String
   transferDate        DateTime
   role                Role
-  submitDateTime      DateTime            @default(now())
+  submitDateTime      DateTime
   instructionType     InstructionType
   makerUsername       String
   transferType        TransferType
   status              Status
   userId              Int
-  user                User                @relation("UserTransactions", fields: [userId], references: [id])
-  transactionDetails  TransactionDetail[]
+  user                User                @relation(fields: [userId], references: [id]) // Each transaction belongs to a single user
+  transactionDetails  TransactionDetail[] // A transaction can have multiple transaction details
   createdAt           DateTime            @default(now())
   updatedAt           DateTime            @updatedAt
 }
@@ -57,6 +67,8 @@ model TransactionDetail {
   accountName   String
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
+  account       Account?    @relation(fields: [accountId], references: [id]) // Renamed from Account to account
+  accountId     Int? // Marked as optional
 }
 
 enum Role {

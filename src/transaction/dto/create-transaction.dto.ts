@@ -1,6 +1,10 @@
 import { IsString, IsNotEmpty, IsNumber, IsDate, IsEnum } from 'class-validator';
-import { Role } from './auth/dto/create-user.dto'
+import { Type } from 'class-transformer';
 
+export enum Role {
+    MAKER = 'MAKER',
+    APPROVER = 'APPROVER'
+}
 
 export enum InstructionType {
     IMMEDIATE = 'IMMEDIATE',
@@ -33,12 +37,14 @@ export class TransactionDto {
     readonly fromAccountNumber: string;
 
     @IsDate()
+    @Type(() => Date)
     readonly transferDate: Date;
 
     @IsEnum(Role)
     readonly role: Role;
 
     @IsDate()
+    @Type(() => Date)
     readonly submitDateTime: Date;
 
     @IsEnum(InstructionType)
