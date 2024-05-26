@@ -25,15 +25,12 @@ export class AuthService {
 
   async signIn(userId: string, corporateAccountNumber: string, pass: string): Promise<any> {
     const user = await this.userService.findOne(userId);
-
     if (!user) {
       throw new UnauthorizedException('User not found');
     }
-
     if (user.corporateAccountNumber !== corporateAccountNumber) {
       throw new UnauthorizedException('Invalid user');
     }
-
     const isPasswordValid = await bcrypt.compare(pass, user.password);
 
     if (!isPasswordValid) {
@@ -45,5 +42,13 @@ export class AuthService {
     return {
       access_token: await this.jwtService.signAsync(payload, { secret: process.env.JWT_SECRET })
     };
+  }
+
+  async validateUserById(payload: string) {
+    const user = await this.userService.findOne(payload);
+    if (!user) {
+      return null;
+    }
+    return user;
   }
 }

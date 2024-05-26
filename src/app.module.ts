@@ -13,9 +13,10 @@ import { UserModule } from './user/user.module';
 import { TransactionService } from './transaction/transaction.service';
 import { TransactionController } from './transaction/transaction.controller';
 import { TransactionModule } from './transaction/transaction.module';
+import { PassportModule } from '@nestjs/passport';
 
 @Module({
-  imports: [ConfigModule.forRoot(), AuthModule, UserModule, TransactionModule],
+  imports: [ConfigModule.forRoot(), PassportModule, AuthModule, UserModule, TransactionModule],
   controllers: [AppController, UserController, AuthController, TransactionController],
   providers: [AppService, PrismaService, UserService, AuthService, JwtService, TransactionService],
 })
