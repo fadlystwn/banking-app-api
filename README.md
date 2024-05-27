@@ -1,6 +1,6 @@
 ## Project Setup Guide
 
-This guide provides step-by-step instructions to set up and run your project using Docker Compose, NestJS, and Prisma.
+This guide provides step-by-step instructions to set up and run NEST PROJECT using Docker Compose, NestJS, and Prisma.
 
 ### Prerequisites
 
@@ -41,6 +41,18 @@ Once the Docker containers are up and running, you can access your NestJS applic
 
 ### Additional Commands
 
+- **Accessing Shell in NestJS Container**: To access the shell in the NestJS container, run:
+
+  ```bash
+  make shell
+  ```
+
+- **Running Database Migration**: To run the database migration, ensuring your database schema is up to date, run:
+
+  ```bash
+  make migrate
+  ```
+
 - **Stopping Docker Containers**: To stop and remove the Docker containers, run:
 
   ```bash
@@ -59,6 +71,3 @@ Once the Docker containers are up and running, you can access your NestJS applic
   make logs
   ```
 
----
-
-This documentation provides a clear guide for anyone new to the project on how to set it up and start working with it using the provided Makefile.
