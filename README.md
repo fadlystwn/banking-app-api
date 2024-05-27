@@ -1,73 +1,64 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+## Project Setup Guide
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This guide provides step-by-step instructions to set up and run your project using Docker Compose, NestJS, and Prisma.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Prerequisites
 
-## Description
+Before starting, ensure you have the following installed on your system:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Docker: [Install Docker](https://docs.docker.com/get-docker/)
+- Prisma CLI: You can install it globally via npm: `npm install -g prisma`
 
-## Installation
+### Getting Started
 
-```bash
-$ npm install
-```
+1. **Clone the Repository**: Clone your project repository from version control or download the source code.
 
-## Running the app
+   ```bash
+   git clone https://github.com/fadlystwn/banking-app-api
+   ```
 
-```bash
-# development
-$ npm run start
+2. **Navigate to Project Directory**: Change your current directory to the root directory of your project.
 
-# watch mode
-$ npm run start:dev
+   ```bash
+   cd banking-app-api
+   ```
 
-# production mode
-$ npm run start:prod
-```
+3. **Initialize Prisma and Build Docker Images**: Run the setup target in the Makefile to initialize Prisma and build Docker images.
 
-## Test
+   ```bash
+   make setup
+   ```
 
-```bash
-# unit tests
-$ npm run test
+4. **Start Docker Containers**: Run the up target in the Makefile to start the Docker containers.
 
-# e2e tests
-$ npm run test:e2e
+   ```bash
+   make up
+   ```
 
-# test coverage
-$ npm run test:cov
-```
+### Usage
 
-## Support
+Once the Docker containers are up and running, you can access your NestJS application and interact with it as needed. The application should be available at `http://localhost:3001`.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+### Additional Commands
 
-## Stay in touch
+- **Stopping Docker Containers**: To stop and remove the Docker containers, run:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+  ```bash
+  make down
+  ```
 
-## License
+- **Restarting Docker Containers**: To restart the Docker containers, run:
 
-Nest is [MIT licensed](LICENSE).
+  ```bash
+  make restart
+  ```
+
+- **Viewing Logs**: To view the logs of the Docker containers, run:
+
+  ```bash
+  make logs
+  ```
+
+---
+
+This documentation provides a clear guide for anyone new to the project on how to set it up and start working with it using the provided Makefile.
